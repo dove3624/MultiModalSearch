@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MultiModeSearch</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<script type=text/javascript src="{{ url_for('static', filename='jquery-2.1.4.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static', filename='my.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.autocomplete.min.js') }}"></script>
+</head>
+<body>
+
+<div id="header">
+<form  method="post", action="upload", enctype="multipart/form-data", id="searchForm">
+ 	<table>
+ 		<tr>
+ 			<td>
+ 		  		<label>Text : </label>
+ 			</td>
+ 			<td>
+			  	<input type="text", id="textInput", name="textInput"> <br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+		  		<label>Image URL : </label>
+			</td>
+			<td>
+		  		<input type="text", id="imageURL", name="imageURL"> <br>
+			</td>  
+		</tr>
+		<tr>
+			<td>
+				<label>Image File : </label>
+			</td>
+			<td>
+				<input type="file", id="imageFile", name="imageFile">
+			</td>
+		</tr>
+		<tr>
+			<td>
+		  		<label>Audio URL : </label>
+			</td>
+			<td>
+		  		<input type="text", id="audioURL", name="audioURL"> <br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Audio File : </label>
+			</td>
+			<td>
+				<input type="file", id="audioFile", name="audioFile"></input>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+			<td>  
+		  		<input type="submit", Value="Search", id='searchButton'>
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+
+<div id="nav">
+<table id='searchResTable'>
+<th>Results</th>
+</table>
+</div>
+
+</body>
+</html>
