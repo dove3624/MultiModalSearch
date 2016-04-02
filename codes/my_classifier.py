@@ -6,14 +6,14 @@ from tensorflow.python.platform import gfile
 import csv
 
 def create_graph():
-	f = gfile.FastGFile('classify_image_graph_def.pb', 'rb')
+	f = gfile.FastGFile('../dataset/classify_image_graph_def.pb', 'rb')
 	graph_def = tf.GraphDef()
 	graph_def.ParseFromString(f.read())
 	_ = tf.import_graph_def(graph_def, name='')
 
 def get_classes():
-	r1 = csv.reader(open("class_id_to_node_id.txt","rb"))
-	r2 = csv.reader(open("node_id_to_class.txt","rb"), delimiter="\t")
+	r1 = csv.reader(open("../dataset/class_id_to_node_id.txt","rb"))
+	r2 = csv.reader(open("../dataset/node_id_to_class.txt","rb"), delimiter="\t")
 
 	class_map = {}
 	label_map = {}
@@ -41,7 +41,7 @@ def run_inference_on_image(image):
 
 def main(_):
 	create_graph()
-	image = "cropped_panda.jpg"
+	image = "../dataset/cropped_panda.jpg"
 	run_inference_on_image(image)
 
 if __name__ == '__main__':

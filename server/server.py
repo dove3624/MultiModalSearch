@@ -13,7 +13,7 @@ import csv
 
 app = Flask(__name__)
 def create_graph():
-	f = gfile.FastGFile('../codes/classify_image_graph_def.pb', 'rb')
+	f = gfile.FastGFile('../dataset/classify_image_graph_def.pb', 'rb')
 	graph_def = tf.GraphDef()
 	graph_def.ParseFromString(f.read())
 	_ = tf.import_graph_def(graph_def, name='')
@@ -21,8 +21,8 @@ def create_graph():
 create_graph()
 
 def get_classes():
-	r1 = csv.reader(open("../codes/class_id_to_node_id.txt","rb"))
-	r2 = csv.reader(open("../codes/node_id_to_class.txt","rb"), delimiter="\t")
+	r1 = csv.reader(open("../dataset/class_id_to_node_id.txt","rb"))
+	r2 = csv.reader(open("../dataset/node_id_to_class.txt","rb"), delimiter="\t")
 
 	class_map = {}
 	label_map = {}
@@ -53,7 +53,7 @@ def get_predictions(image):
 @app.route('/search', methods=['POST'])
 def search():
     query = request.form['text']
-    print get_predictions("../codes/cropped_panda.jpg")
+    print get_predictions("../dataset/cropped_panda.jpg")
    	
     return jsonify({'result':[]})
 
