@@ -5,7 +5,7 @@ idd=""
 text=""
 para=""
 count = 1
-with open("/Users/mukundverma/IR_Dataset/long_new.json","r") as fi:
+with open("../dataset/long_new.json","r") as fi:
 	for line in fi:
 		if "\"@id" in line:
 			idd=line[44:]
