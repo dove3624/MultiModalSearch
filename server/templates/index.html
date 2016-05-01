@@ -14,62 +14,42 @@
 <body>
 
 <div id="header">
-<form  method="post", action="upload", enctype="multipart/form-data", id="searchForm">
- 	<table>
- 		<tr>
- 			<td>
+	<h2>Multi Modal Search</h2>
+</div>
+
+
+<div id='searchDiv'>
+<div id='h4div'>
+<h4>Your Query!</h4>
+</div>
+<form  method="post", action="/search", enctype="multipart/form-data", id="searchForm"> 
+<!-- <form action="", enctype="multipart/form-data", id="searchForm"> -->
+
  		  		<label>Text : </label>
- 			</td>
- 			<td>
+
 			  	<input type="text", id="textInput", name="textInput"> <br>
-			</td>
-		</tr>
-		<tr>
-			<td>
-		  		<label>Image URL : </label>
-			</td>
-			<td>
-		  		<input type="text", id="imageURL", name="imageURL"> <br>
-			</td>  
-		</tr>
-		<tr>
-			<td>
+
 				<label>Image File : </label>
-			</td>
-			<td>
+
 				<input type="file", id="imageFile", name="imageFile">
-			</td>
-		</tr>
-		<tr>
-			<td>
-		  		<label>Audio URL : </label>
-			</td>
-			<td>
-		  		<input type="text", id="audioURL", name="audioURL"> <br>
-			</td>
-		</tr>
-		<tr>
-			<td>
+
 				<label>Audio File : </label>
-			</td>
-			<td>
+
 				<input type="file", id="audioFile", name="audioFile"></input>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			</td>
-			<td>  
+
 		  		<input type="submit", Value="Search", id='searchButton'>
-			</td>
-		</tr>
-	</table>
+
 </form>
 </div>
 
 <div id="nav">
+<div id='h4div'>
+<h4>Results</h4>
+</div>
 <table id='searchResTable'>
-<th>Results</th>
+{% for item in results %}
+         {{ item }} 
+{% endfor %}
 </table>
 </div>
 

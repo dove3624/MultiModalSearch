@@ -1,10 +1,8 @@
-
 from elasticsearch import Elasticsearch
 es = Elasticsearch()
 
 idd=""
 text=""
-para=""
 img = ""
 count = 1
 with open("../dataset/img_new.json","r") as fi:
@@ -20,8 +18,7 @@ with open("../dataset/img_new.json","r") as fi:
 				text=line4[20:]
 				text=text[:-2]
 			if len(idd)>0 and len(text)>0:
-				print idd + " " + text
-				para="{\n\"resource\" : " + "\"" + idd + "\"" + ",\"image\" :" + "\"" + text + "\"\n"+ "}"
+				para={'resource' : idd, 'image' : text}
 				es.index(index="test", doc_type='images', id=count, body=para)
 				idd=""
 				text=""

@@ -1,7 +1,8 @@
-from subprocess import call
+from elasticsearch import Elasticsearch
+es = Elasticsearch()
+
 idd=""
 text=""
-para=""
 count = 1
 with open("../dataset/long_new.json","r") as fi:
 	for line in fi:
@@ -12,14 +13,15 @@ with open("../dataset/long_new.json","r") as fi:
 			text=line[27:]
 			text=text[:-2]
 		if len(idd)>0 and len(text)>0:
-			para="{\n\"resource\" : " + "\"" + idd + "\"" + ",\"text\" :" + "\"" + text + "\"\n"+ "}"
+			para={"resource" : idd, "text1" : text}
 			#print para
-			call(["curl", "-XPUT", "http://localhost:9200/dbpedia/abstracts/"+`count`, "-d",para])
+			es.index(index="dbpedia", doc_type='abstracts', id=count, body=para)
 			idd=""
 			text=""
 			para=""
 			count=count+1
-
+			if(count % 100000 == 0):
+				print count
 
 
 

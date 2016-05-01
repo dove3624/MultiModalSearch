@@ -60,7 +60,7 @@ class SimpleSummarizer:
 
 s=SimpleSummarizer()
 stop=stopwords.words('english')
-AUDIO_FILE = "E:/Mtech/2nd sem/IR/Project/Frase_de_Neil_Armstrong.wav"
+AUDIO_FILE = "../dataset/Hanks_Tom_Vassar_College_Commencement.wav"
 r = sr.Recognizer()
 with sr.AudioFile(AUDIO_FILE) as source:
     audio = r.record(source)

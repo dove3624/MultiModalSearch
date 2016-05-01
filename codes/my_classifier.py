@@ -31,18 +31,21 @@ def run_inference_on_image(image):
  
 	class_map, label_map = get_classes()
 
+	res = ''
 	with tf.Session() as sess:
 		softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
 		predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data})
 		predictions = np.squeeze(predictions)
 		top_k = predictions.argsort()[-5:][::-1]
 		for k in top_k:
-			print label_map[class_map[k]]   
+			res += label_map[class_map[k]] + ","
+
+	return res
 
 def main(_):
 	create_graph()
 	image = "../dataset/cropped_panda.jpg"
-	run_inference_on_image(image)
+	print type(run_inference_on_image(image))
 
 if __name__ == '__main__':
 	tf.app.run()
