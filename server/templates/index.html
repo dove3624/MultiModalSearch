@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MultiModeSearch</title>
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" />
+<title>MultiModalSearch</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <script type=text/javascript src="{{ url_for('static', filename='jquery-2.1.4.js') }}"></script>
@@ -13,39 +12,51 @@
 </head>
 <body>
 
-<div id="header">
-	<h2>Multi Modal Search</h2>
+<div id="container">
+   <div id="image"> <img src="{{ url_for('static', filename='slide.png') }}" alt="I-SEARCH, A multi-modal search engine" width="100%" height="200" /> </div>
 </div>
+<br><br>
 
-
-<div id='searchDiv'>
-<div id='h4div'>
-<h4>Your Query!</h4>
-</div>
-<form  method="post", action="/search", enctype="multipart/form-data", id="searchForm"> 
+<div id="searchDiv">
+<form method="post" ,="" action="/search" enctype="multipart/form-data" id="searchForm" class="form-horizontal"> 
 <!-- <form action="", enctype="multipart/form-data", id="searchForm"> -->
+   <div class="form-group">
+         <div class="col-sm-12">
+			  	<input type="text" , id="textInput" name="textInput" placeholder = "Enter text query" > 
+         </div>
+   </div>
+   <div class="form-group">
+         <div class="col-sm-4 col-centered text-center">
+            <label class="btn btn-default btn-lg" for="imageFile" width="100%">
+	  	     		<input type="file" , id="imageFile" name="imageFile" type="file" style="display:none;">
+               Image File
+            </label>
+         </div>
 
- 		  		<label>Text : </label>
+         <div class="col-sm-4 col-centered text-center">
+         <label class="btn btn-default btn-lg" for="audioFile">
+				<input type="file" , id="audioFile" name="audioFile" style="display:none;">
+            Audio File
+         </label>
+         </div>
 
-			  	<input type="text", id="textInput", name="textInput"> <br>
-
-				<label>Image File : </label>
-
-				<input type="file", id="imageFile", name="imageFile">
-
-				<label>Audio File : </label>
-
-				<input type="file", id="audioFile", name="audioFile"></input>
-
-		  		<input type="submit", Value="Search", id='searchButton'>
-
+         <div class="col-sm-4 col-centered text-center">
+         <label class="btn btn-primary btn-lg" for="searchButton">
+		  		<input type="submit" , id="searchButton" style="display:none;"> 
+            Search
+         </label>
+         </div>
+   </div>
 </form>
 </div>
-
+<br><br>
 <div id="nav">
-<div id='h4div'>
-<h4>Results</h4>
+<div id="h4div">
+<h2>
+   Results
+</h2>
 </div>
+<br>
 <table id='searchResTable'>
 {% for item in results %}
          {{ item }} 

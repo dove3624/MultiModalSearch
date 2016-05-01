@@ -37,8 +37,9 @@ def remove_tags(text):
     return TAG_RE.sub(' ', text)
 
 def remove_unicode(data):
+    data = re.sub(r'[^\x00-\x7F]+',' ', data)
     try:
-        return data.decode('unicode_escape').encode('ascii','replace')
+        return data.decode('unicode_escape').encode('ascii','ignore')
     except UnicodeDecodeError:
         return "UnicodeDecodeError"
 
@@ -48,10 +49,10 @@ def es_search(query):
     for hit in resrc['hits']['hits']:
         global rev
         if rev == 0:
-            color = '#e6e6e6'
+            color = 'white'
             rev = 1
         else:
-            color = 'white'
+            color = '#e6e6e6'
             rev = 0
 
         res =  hit["_source"]["resource"]
@@ -62,7 +63,7 @@ def es_search(query):
             temp += Markup("<tr bgcolor=" + color + "> <td> <img src='")  + img_hit['_source']['image'][4:] + Markup("'> </td> </tr>")
 
 
-        temp += Markup('<tr style="border-bottom: 1px dotted silver;" bgcolor="#333300"> <td style="width:500px"></td></tr>')
+        temp += Markup('<tr style="border-bottom: 1px dotted silver;" bgcolor="black"> <td style="width:500px"></td></tr>')
 
         ht = hash(temp)
         if ht not in result_dic:
@@ -150,10 +151,10 @@ def get_audio_text(f_sz):
 
         global rev
         if rev == 0:
-            color = '#e6e6e6'
+            color = 'white'
             rev = 1
         else:
-            color = 'white'
+            color = '#e6e6e6'
             rev = 0
 
         text = remove_tags(text)
@@ -162,7 +163,7 @@ def get_audio_text(f_sz):
         text = Markup("<tr bgcolor=" + color + "> <td> <p>") + nl2br(text) + Markup("</p> </td> </tr>")
 
 
-        text += Markup('<tr style="border-bottom: 1px dotted silver;" bgcolor="#333300"> <td style="width:500px"></td></tr>')
+        text += Markup('<tr style="border-bottom: 1px dotted silver;" bgcolor="black"> <td style="width:500px"></td></tr>')
 
         result.append(text)
 
